@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Whispers | Premium Speed Dating Experiences</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary-blue: #1a365d;
+            --primary-gold: #d4af37;
+            --secondary-blue: #2c5282;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, rgba(26,54,93,0.9) 0%, rgba(44,82,130,0.9) 100%), 
+                        url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9aefb476-8c15-4ae9-bf95-ffbe63794ba6.png') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+        
+        .event-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent 60%, rgba(0,0,0,0.7));
+            z-index: 1;
+        }
+        
+        .testimonial-card {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .testimonial-card.active {
+            opacity: 1;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-gold) 0%, #f1c40f 100%);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold text-indigo-900">
+                        <span class="text-blue-800">Azure</span> <span class="text-yellow-600">Whispers</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-800 transition">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-800 transition">About</a>
+                    <a href="#events" class="text-gray-700 hover:text-blue-800 transition">Events</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-blue-800 transition">Testimonials</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-800 transition">Contact</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-white z-20 pt-20">
+        <div class="flex flex-col items-center space-y-6 py-8">
+            <a href="#home" class="text-gray-700 hover:text-blue-800 transition text-lg">Home</a>
+            <a href="#about" class="text-gray-700 hover:text-blue-800 transition text-lg">About</a>
+            <a href="#events" class="text-gray-700 hover:text-blue-800 transition text-lg">Events</a>
+            <a href="#testimonials" class="text-gray-700 hover:text-blue-800 transition text-lg">Testimonials</a>
+            <a href="#contact" class="text-gray-700 hover:text-blue-800 transition text-lg">Contact</a>
+            <button class="px-6 py-2 btn-primary rounded-full text-white font-medium">Book Now</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero text-white pt-24 pb-32 md:pt-32 md:pb-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
+                        Find Your Perfect Match at <span class="text-yellow-300">Azure Whispers</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">
+                        Exquisite speed dating events for sophisticated singles seeking meaningful connections.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#events" class="px-8 py-3 btn-primary rounded-full text-white font-medium text-lg">View Events</a>
+                        <a href="#about" class="px-8 py-3 border-2 border-white rounded-full text-white font-medium text-lg hover:bg-white hover:text-blue-900 transition">Learn More</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5f6251a1-3a58-4438-8c8f-b1221dfefbd5.png" alt="Stylish couple laughing during a speed dating event in an upscale lounge with warm lighting" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">The Azure Whispers Experience</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our carefully curated events combine the excitement of speed dating with the elegance of premium social experiences.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center px-6">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-blue-50 flex items-center justify-center">
+                        <i class="fas fa-users text-3xl text-blue-800"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Quality Matches</h3>
+                    <p class="text-gray-600">
+                        We vet all attendees to ensure high-caliber participants who are genuinely interested in meaningful connections.
+                    </p>
+                </div>
+                
+                <div class="text-center px-6">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-blue-50 flex items-center justify-center">
+                        <i class="fas fa-glass-cheers text-3xl text-blue-800"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Luxury Venues</h3>
+                    <p class="text-gray-600">
+                        Our events take place at the city's most exclusive locations, creating the perfect ambiance for romance.
+                    </p>
+                </div>
+                
+                <div class="text-center px-6">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-blue-50 flex items-center justify-center">
+                        <i class="fas fa-heart text-3xl text-blue-800"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Smart Matching</h3>
+                    <p class="text-gray-600">
+                        Our algorithm helps identify your most compatible matches based on your preferences and personality.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Upcoming Events</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Join our exclusive speed dating evenings designed for successful, sophisticated singles.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Event 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md event-card">
+                    <div class="relative">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e6597f29-727b-45ca-9366-a480922519a6.png" alt="Elegant wine bar setting for young professionals speed dating with soft lighting and modern decor" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Popular
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-blue-800 font-medium mb-2">June 22, 2023</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Young Professionals Evening</h3>
+                        <p class="text-gray-600 mb-4">
+                            Sophisticated speed dating for professionals aged 18-21 in our rooftop lounge
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">₹79 Onwards <span class="text-sm line-through text-gray-400">₹1299</span></span>
+                            <button class="px-4 py-2 btn-primary rounded-full text-white text-sm">Register</button>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            
+            <div class="text-center mt-12">
+                <a href="#" class="px-8 py-3 btn-primary rounded-full text-white font-medium text-lg inline-block">View All Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-blue-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Success Stories</h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                    Hear from couples who found love at Azure Whispers events.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto relative">
+                <div class="testimonial-slider">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card active text-center px-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b2f392f7-9b43-40fa-a48c-f1e75737aa4f.png" alt="Happy couple Sarah and Michael smiling, embracing at a park with autumn leaves in the background" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-yellow-400">
+                        <p class="text-xl italic mb-6">
+                            "We met at the Professionals Mixer last year and instantly connected. Azure Whispers made the dating process enjoyable and stress-free."
+                        </p>
+                        <h4 class="font-bold text-lg">Om and Kashish</h4>
+                        <p class="opacity-80">Matched November 2024</p>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card hidden text-center px-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2594afb9-e981-4325-8f45-736184f5cc7c.png" alt="Happy couple Jessica and David enjoying a coffee date in a cafe, looking at each other" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-yellow-400">
+                        <p class="text-xl italic mb-6">
+                            "I was skeptical about speed dating, but Azure Whispers changed my mind. The quality of people was exceptional, and I met my partner Anushka on my very first event!"
+                        </p>
+                        <h4 class="font-bold text-lg">Jayant and Anushka</h4>
+                        <p class="opacity-80">Matched March 2024</p>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card hidden text-center px-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4d2d7431-82b3-4d21-8c1d-a27ff944e9c0.png" alt="Happy couple Ryan and Maria laughing together at a beach sunset holding hands" class="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-yellow-400">
+                        <p class="text-xl italic mb-6">
+                            "The intimate setting and carefully curated guest list made all the difference. We're so grateful we gave Azure Whispers a chance - it led us to each other."
+                        </p>
+                        <h4 class="font-bold text-lg">Pranjal and Tanish</h4>
+                        <p class="opacity-80">Matched January 2025</p>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center mt-8 space-x-3">
+                    <button class="testimonial-nav w-3 h-3 rounded-full bg-white opacity-30 focus:outline-none testimonial-active" data-index="0"></button>
+                    <button class="testimonial-nav w-3 h-3 rounded-full bg-white opacity-30 focus:outline-none" data-index="1"></button>
+                    <button class="testimonial-nav w-3 h-3 rounded-full bg-white opacity-30 focus:outline-none" data-index="2"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Connect With Us</h2>
+                    <p class="text-gray-600 mb-8 text-lg">
+                        Ready to find your perfect match? Our team is here to help you with any questions about our events, private bookings, or matchmaking services. Reach out today!
+                    </p>
+                    
+                    <div class="space-y-6">
+                        
+                        
+                        <div class="flex items-start">
+                            <div class="text-yellow-600 mr-4 mt-1">
+                                <i class="fas fa-phone-alt text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Instagram</h4>
+                                <p class="text-gray-600">@azurewhispersdating</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-yellow-600 mr-4 mt-1">
+                                <i class="fas fa-envelope text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Email</h4>
+                                <p class="text-gray-600">azurewhispersofficial@gmail.com</p>
+                                <p class="text-sm text-gray-500 mt-1">Response within 24 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <form class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                            <select id="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="general">General Inquiry</option>
+                                <option value="events">Event Information</option>
+                                <option value="private">Private Booking</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full py-3 btn-primary rounded-full text-white font-medium text-lg hover:shadow-lg transition-all duration-300">Send Message</button>
+                        <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-lg">
+                            Thank you! Your message has been sent. We'll get back to you soon.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="text-2xl font-bold mb-4">
+                        <span class="text-blue-400">Azure</span> <span class="text-yellow-400">Whispers</span>
+                    </div>
+                    <p class="text-gray-400 max-w-xs">
+                        Creating meaningful connections through premium speed dating experiences.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                            <li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li>
+                            <li><a href="#events" class="text-gray-400 hover:text-white transition">Events</a></li>
+                            <li><a href="#testimonials" class="text-gray-400 hover:text-white transition">Testimonials</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Services</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Speed Dating</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Private Events</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Matchmaking</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Dating Coaching</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition text-xl"><i class="fab fa-instagram"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2024 Azure Whispers. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Testimonial Slider
+        const testimonials = document.querySelectorAll('.testimonial-card');
+        const testimonialNavs = document.querySelectorAll('.testimonial-nav');
+        
+        function showTestimonial(index) {
+            testimonials.forEach(testimonial => {
+                testimonial.classList.remove('active');
+                testimonial.classList.add('hidden');
+            });
+            
+            testimonialNavs.forEach(nav => {
+                nav.classList.remove('testimonial-active');
+                nav.classList.add('opacity-30');
+            });
+            
+            testimonials[index].classList.remove('hidden');
+            testimonials[index].classList.add('active');
+            testimonialNavs[index].classList.remove('opacity-30');
+            testimonialNavs[index].classList.add('testimonial-active');
+        }
+        
+        testimonialNavs.forEach(nav => {
+            nav.addEventListener('click', () => {
+                const index = parseInt(nav.getAttribute('data-index'));
+                showTestimonial(index);
+            });
+        });
+        
+        // Auto-rotate testimonials every 5 seconds
+        let currentTestimonial = 0;
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission handling
+        const contactForm = document.querySelector('#contact form');
+        const formSuccess = document.getElementById('form-success');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would normally send the form data to your server
+            // For demo purposes, we'll just show the success message
+            formSuccess.classList.remove('hidden');
+            contactForm.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                formSuccess.classList.add('hidden');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
+
